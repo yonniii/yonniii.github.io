@@ -125,12 +125,15 @@ author:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
-    - label: "GitHub"
+    - label: "inProgress Project"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/ObfusKorea/Obfuscator"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/yonniii"
 
 # Site Footer
 footer:
