@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://yonniii.github.io/sitemap.xml
