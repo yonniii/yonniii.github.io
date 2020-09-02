@@ -5,6 +5,7 @@ date: 2020-09-02 12:31:00 -0400
 categories: obfuscation
 ---
 
+
 # MBA Expression 난독화
 
 MBA Experssion은 산술연산을 난독화하는 방법 중 하나로, 논리연산과 산술연산을 섞어서 난독화 하는 방법이다.
@@ -52,6 +53,36 @@ bool runOnBasicBlock(BasicBlock &B){
 	}
 }
 ```
+
+위의 예제를 조금 더 설명하려고 한다. 먼저 BinaryOperator class의 Create 메소드와 CreateNeg 메소드를 사용한다. 
+
+[Create 메소드의 document](https://llvm.org/doxygen/classllvm_1_1BinaryOperator.html#a02ce9966395063ac501ecbc1623deda4) 를 보면
+ operand S1과 S2를 Op에 명시된대로 수행하는 binary instruction을 생성한다. 이 instruction은 마지막 파라미터로 명시한 instruction의 이전에 삽입된다.
+ 
+[CreateNeg 메소드](https://llvm.org/doxygen/classllvm_1_1BinaryOperator.html#a073c092ce74a122e898e435e60e84599)는  
+unary operation 생성자이다. sub나 xor 연산을 이용해서 구현된다. 아래의 Test 결과를 보면 unary operator 를 생성하는 CreateNeg를 호출했는데
+sub 연산이 사용된 것을 확인할 수 있다. [CreateNeg 메소드의 코드](https://llvm.org/doxygen/Instructions_8cpp_source.html#l02492) 를
+직접 보면 Sub를 수행하는 BinaryOperator객체를 반환하는 것을 통해 확인할 수 있다.
+그리고 NEG와 NOT을 지원한다. 위에 활용한 예를 참고하여, 작성하면 쉽게 할 수 있을거다.
+
+## Test
+
+이 포스트에서는 모두 다음의 예제코드를 사용하였다 :
+
+```c++
+#include <stdio.h>
+  
+int main()
+{
+        int a = 34;
+        a = a+56;
+        printf("%d\n",a);
+
+        return 0;
+}
+
+```
+
 
 위의 pass를 이용하여 컴파일한 결과를 원본 IR과 비교하면 :
 
@@ -188,19 +219,6 @@ MBA Experssion :
 
 위의 pass를 이용해서 아래의 코드를 컴파일하여 실행해보면:
 
-```c++
-#include <stdio.h>
-  
-int main()
-{
-        int a = 34;
-        a = a+56;
-        printf("%d\n",a);
-
-        return 0;
-}
-
-```
  
 ![image](https://user-images.githubusercontent.com/33623107/92021727-28e18600-ed95-11ea-8647-b872fbbed96f.png)
 
