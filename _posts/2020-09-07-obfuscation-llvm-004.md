@@ -144,7 +144,7 @@ void TestModule::mba_Or(BinaryOperator *bo)
 
 구현에 대한 자세한 설명은 이전 포스트에 작성하였으니 이번 포스트에서는 생략하겠다.
 
-# Test
+## Test
 
 ```c++
 #include <stdio.h>
@@ -166,9 +166,11 @@ int main()
 위의 c 소스코드에 이번에 만든 난독화 pass를 적용해보았다.
 
 ![image](https://user-images.githubusercontent.com/33623107/92357475-dd2b3580-f122-11ea-8a38-e3df4599a518.png)
-<난독화 전>
+
+난독화 전
 
 ![image](https://user-images.githubusercontent.com/33623107/92357300-950c1300-f122-11ea-8203-fa7650c1483b.png)
-<난독화 후>
 
-난독화하여 생성한 실행파일과 원본이 같은 결과를 내는 것을 볼 수있다. 그러면 IR에 난독화가 잘 적용되었는지 확인해보자.
+난독화 후
+
+난독화하여 생성한 실행파일과 원본이 같은 결과를 내는 것을 볼 수있다. 
