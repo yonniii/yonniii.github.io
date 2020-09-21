@@ -129,3 +129,5 @@ attributes #1 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-
 
 !0 = !{!"clang version 4.0.0 (tags/RELEASE_400/final)"}
 ```
+
+dyanmic linking하면 좀 더 보기 어렵지 않을까 생각함.
